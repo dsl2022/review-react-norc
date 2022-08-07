@@ -4,13 +4,14 @@ const setCurrentNote = () => {};
 const setisDetailShowed = () => {};
 const setSearch = () => {};
 const setNotes = () => {};
-export const NotesContext = createContext(
-  [],
+export const NotesContext = createContext({
+  notes: [],
   setNotes,
   setCurrentNote,
   setisDetailShowed,
   setSearch,
-  "",
-  {},
-  false
-);
+  search: "",
+  currentNote: {},
+  isDetailShowed: false,
+  ref: "",
+});

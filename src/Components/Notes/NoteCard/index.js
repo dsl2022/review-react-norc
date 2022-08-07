@@ -2,9 +2,21 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useContext } from "react";
 import { NotesContext } from "../../../Context/NoteContext";
-export default function Note({ title, description, createdAt, priority }) {
-  const { setisDetailShowed, isDetailShowed } = useContext(NotesContext);
-  function handleModalOpen() {
+export default function Note({ id, title, description, createdAt, priority }) {
+  const {
+    setCurrentNote,
+    currentNote,
+    setisDetailShowed,
+    notes,
+    isDetailShowed,
+  } = useContext(NotesContext);
+  function handleModalOpen(e) {
+    let id = parseInt(e.target.id);
+    notes.forEach((note) => {
+      if (note.id === id) {
+        setCurrentNote(notes[id]);
+      }
+    });
     setisDetailShowed(true);
   }
   return (
@@ -13,8 +25,7 @@ export default function Note({ title, description, createdAt, priority }) {
         <Card.Title>{title}</Card.Title>
         <Card.Text>{createdAt}</Card.Text>
         <Card.Text>{priority}</Card.Text>
-        <Card.Text>{description}</Card.Text>
-        <Button onClick={handleModalOpen} variant="primary">
+        <Button id={id} onClick={handleModalOpen} variant="primary">
           View Detail
         </Button>
       </Card.Body>

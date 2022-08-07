@@ -5,9 +5,10 @@ import { data } from "./Model/data";
 import Detail from "./Components/Details";
 import Notes from "./Components/Notes";
 import Search from "./Components/Search";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 function App() {
+  const ref = useRef("");
   const [notes, setNotes] = useState(data);
   const [search, setSearch] = useState("");
   const [currentNote, setCurrentNote] = useState({});
@@ -24,6 +25,7 @@ function App() {
           search,
           currentNote,
           isDetailShowed,
+          ref,
         }}
       >
         <Container>
