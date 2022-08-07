@@ -17,6 +17,7 @@ function App() {
       <NotesContext.Provider
         value={{
           notes,
+          setNotes,
           setCurrentNote,
           setisDetailShowed,
           setSearch,
