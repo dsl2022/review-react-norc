@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import Container from "react-bootstrap/Container";
+import "./App.css";
+import { NotesContext } from "./Context/NoteContext";
+import { data } from "./Model/data";
+import Detail from "./Components/Details";
+import Notes from "./Components/Notes";
+import Search from "./Components/Search";
+import { useState } from "react";
 
 function App() {
+  const [notes, setNotes] = useState(data);
+  const [search, setSearch] = useState("");
+  const [currentNote, setCurrentNote] = useState({});
+  const [isDetailShowed, setisDetailShowed] = useState(false);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NotesContext.Provider
+        value={{
+          notes,
+          setCurrentNote,
+          setisDetailShowed,
+          setSearch,
+          search,
+          currentNote,
+          isDetailShowed,
+        }}
+      >
+        <Container>
+          {isDetailShowed && <Detail />}
+          <Search />
+          <Notes />
+        </Container>
+      </NotesContext.Provider>
     </div>
   );
 }
